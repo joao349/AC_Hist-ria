@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Último Bote</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🚢 O Último Bote</h1>
+
+        <div id="historia">
+            <p>
+                Você está em um navio que está afundando.
+                Há apenas 3 vagas restantes no bote salva-vidas.
+            </p>
+        </div>
+
+        <div id="opcoes">
+            <h2>Quem você salva primeiro?</h2>
+
+            <button onclick="escolha1('medica')">
+                👩‍⚕️ Médica
+            </button>
+
+            <button onclick="escolha1('crianca')">
+                👦 Criança de 8 anos
+            </button>
+
+            <button onclick="escolha1('idoso')">
+                👴 Idoso de 80 anos
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let pontos = 0;
+
+        function escolha1(opcao) {
+
+            if(opcao === "medica"){
+                pontos += 2;
+            }
+            else if(opcao === "crianca"){
+                pontos += 1;
+            }
+
+            document.getElementById("historia").innerHTML = `
+                <p>
+                    O navio continua afundando.
+                    Agora resta apenas uma vaga no bote.
+                </p>
+            `;
+
+            document.getElementById("opcoes").innerHTML = `
+                <h2>Quem ocupará a última vaga?</h2>
+
+                <button onclick="escolha2('mae')">
+                    👩‍👧 Mãe com bebê
+                </button>
+
+                <button onclick="escolha2('cientista')">
+                    🧪 Cientista
+                </button>
+            `;
+        }
+
+        function escolha2(opcao){
+
+            if(opcao === "mae"){
+                pontos += 1;
+            } else {
+                pontos += 2;
+            }
+
+            document.getElementById("historia").innerHTML = `
+                <p>
+                    Uma forte tempestade se aproxima.
+                    O bote está sobrecarregado.
+                </p>
+            `;
+
+            document.getElementById("opcoes").innerHTML = `
+                <h2>O que fazer?</h2>
+
+                <button onclick="escolha3('todos')">
+                    ❤️ Arriscar todos juntos
+                </button>
+
+                <button onclick="escolha3('retornar')">
+                    ⚓ Retornar depois para resgatar mais pessoas
+                </button>
+            `;
+        }
+
+        function escolha3(opcao){
+
+            if(opcao === "todos"){
+                pontos += 1;
+            } else {
+                pontos += 2;
+            }
+
+            let resultado = "";
+
+            if(pontos >= 5){
+                resultado =
+                "Você tomou decisões mais utilitaristas, priorizando quem poderia gerar maior benefício para a sociedade.";
+            }
+            else if(pontos >= 3){
+                resultado =
+                "Você buscou equilibrar utilidade social e valor individual da vida.";
+            }
+            else{
+                resultado =
+                "Você priorizou a igualdade e a dignidade de cada indivíduo.";
+            }
+
+            document.getElementById("historia").innerHTML = `
+                <h2>Fim da História</h2>
+                <p>${resultado}</p>
+            `;
+
+            document.getElementById("opcoes").innerHTML = `
+                <button onclick="location.reload()">
+                    🔄 Jogar Novamente
+                </button>
+            `;
+        }
+    </script>
+
+</body>
+</html>
